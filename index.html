@@ -4,10 +4,12 @@
         <script src="jquery-2.1.1.min.js"></script> 
     </head>
     <body>
+        
     	<form>
     		<input type="text" name="fname"><br>
-    		<input type="submit" value="send">
+    		
     	</form> 
+        <div id="submitButton">draw</div> 
         <pre id="ascii"></pre>
     	<img src="head_template_d.gif" id="sprite"> 
     	<!-- <canvas id="tempCanvas">
@@ -22,10 +24,25 @@
             font-size: .3em;
             font-family: courier;
             font-weight: bold;
-            width: 900px;
+            width: 900px;   
             margin: auto;
-           
         }
+        #submitButton {
+            padding: 10px 30px;
+            border: 2px solid black;
+            width: 300px;
+            text-align: center;
+            margin: auto;
+            display: block;
+            text-transform: uppercase;
+            font-family: arial;
+            letter-spacing: 5px;
+        }
+            #submitButton:hover {
+                border: 2px solid red;
+                color: red;
+                cursor: pointer;
+            }
    </style> 
 </html>
 

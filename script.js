@@ -15,6 +15,10 @@ window.onload = function(){
 
 	image.onload = function() {
 
+		$("#submitButton").click(function(){
+			console.log('clicked draw button')
+		});
+
 		var sprite = document.getElementById("sprite");
 		var spriteWidth = sprite.width; 
 		var spriteHeight = sprite.height; 
@@ -38,7 +42,7 @@ window.onload = function(){
 
 		//color vars 
 		var r, g, b, shade;
-		var character, lineCount = 0, line = ""; 
+		var character, lastPixel = 0, lineCount = 0, line = ""; 
 
 		for(var i = 0; i < colourData.length; i = i+4){
 
@@ -55,13 +59,9 @@ window.onload = function(){
 			else if(shade > 546) character = "+";
 			else if(shade > 10) character = "#";
 			else if(shade > 5) character = "W";
-			else character = "@"; //almost black
-
-
-
-			if(lineCount > 80 && lineCount < 140) {
-				if(i != 0 && (i/4)%spriteWidth == 0) //if the pointer reaches end of pixel-line
-				{
+			else character = "@"; //almost black 
+			
+			if(i != 0 && (i/4)%spriteWidth == 0) {
 				ascii.appendChild(document.createTextNode(line));
 				//newline
 				ascii.appendChild(document.createElement("br"));
@@ -69,11 +69,11 @@ window.onload = function(){
 				line = "";
 				lineCount++; 
 				console.log(lineCount);
-				}
+			}
 
-				line += character; 
+			line += character; 
 
-			}	
+			
 
 		} 
 
