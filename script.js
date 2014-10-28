@@ -17,6 +17,9 @@ window.onload = function(){
 
 		$("#submitButton").click(function(){
 			console.log('clicked draw button')
+
+			printChars(); 
+
 		});
 
 		var sprite = document.getElementById("sprite");
@@ -42,40 +45,61 @@ window.onload = function(){
 
 		//color vars 
 		var r, g, b, shade;
-		var character, lastPixel = 0, lineCount = 0, line = ""; 
+		var character, wrappedChar, lastPixel = 0, lineCount = 0, pixelCount = 0, line = ""; 
 
-		for(var i = 0; i < colourData.length; i = i+4){
+		function printChars() {
 
-			r = colourData[i]; 
-			g = colourData[i+1];
-			b = colourData[i+2];
 
-			shade = r + g + b;
 
-			if(shade > 700) character = " "; //almost white
-			else if(shade > 200) character = ".";
-			// else if(shade > 39) character = ":";
-			// else if(shade > 38) character = "*";
-			else if(shade > 546) character = "+";
-			else if(shade > 10) character = "#";
-			else if(shade > 5) character = "W";
-			else character = "@"; //almost black 
-			
-			if(i != 0 && (i/4)%spriteWidth == 0) {
-				ascii.appendChild(document.createTextNode(line));
-				//newline
-				ascii.appendChild(document.createElement("br"));
-				//emptying line for the next row of pixels.
-				line = "";
-				lineCount++; 
-				console.log(lineCount);
-			}
+			for(var i = 0; i < colourData.length; i = i+4){
+				
+				//get colour data 
+				r = colourData[i]; 
+				g = colourData[i+1];
+				b = colourData[i+2];
+				shade = r + g + b;
 
-			line += character; 
 
-			
 
-		} 
+				if(shade > 700) character = "."; //almost white
+				else if(shade > 200) character = ".";
+				// else if(shade > 39) character = ":";
+				// else if(shade > 38) character = "*";
+				else if(shade > 546) character = " .";
+				else if(shade > 10) character = ".";
+				else if(shade > 5) character = ".";
+				else character = "."; //almost black 
+
+				
+
+				
+				if(i != 0 && (i/4)%spriteWidth == 0) {
+					ascii.appendChild(document.createTextNode(line));
+					//newline
+					ascii.appendChild(document.createElement("br"));
+					//emptying line for the next row of pixels.
+					line = "";
+					lineCount++; 
+					console.log(lineCount);
+				}
+
+
+				wrappedChar = '<span class="char">' + character + '</span>'; 
+
+				line += wrappedChar; 
+
+
+
+
+				pixelCount++;
+				
+			} 
+			lastPixel = i
+			console.log(pixelCount);
+
+		}
+
+		
 
 		
 
