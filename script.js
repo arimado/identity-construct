@@ -22,6 +22,8 @@ window.onload = function(){
 
 		});
 
+		var ascii = document.getElementById("ascii");
+
 		var sprite = document.getElementById("sprite");
 		var spriteWidth = sprite.width; 
 		var spriteHeight = sprite.height; 
@@ -48,13 +50,9 @@ window.onload = function(){
 		var character, wrappedChar, wrappedLine, lastPixel = 0, lineCount = 0, pixelCount = 0, line = "";
 		var shadeData = [];  
 		var charData = []; 
+		var currentShadeData = []; 
 
-		function printChars() {
-
-			//intitalise charData array 
-			for(var i = 0; i < colourData.length; i = i+4) charData.push("."); 
-
-			//print charData array 
+		function printCharData() {
 			for(var i = 0; i < charData.length; i++) {
 				if(i !=0 && i%spriteWidth == 0) {
 						ascii.appendChild(document.createTextNode(line));
@@ -64,10 +62,19 @@ window.onload = function(){
 						line = "";
 				} else {
 					line += charData[i];
-				}
+				} 
 			}
+		}
 
-			//
+		function printChars() {
+
+			//intitalise charData array 
+			for(var i = 0; i < colourData.length; i = i+4) charData.push("."); 
+
+			//print charData array 
+			printCharData(); 
+
+			//intialise shadeData array 
 			for(var i = 0; i < colourData.length; i = i+4){
 				
 				//get colour data 
@@ -89,6 +96,35 @@ window.onload = function(){
 				}
 				
 			} 
+
+			// var elementPos = shadeData.map(function(x) {return x; }).indexOf(2);
+			// var objectFound = shadeData[elementPos];
+
+
+
+			for(var i = 0; i < shadeData.length; i++) {
+				if(shadeData[i] == 2) {
+					currentShadeData.push(i); 
+				}
+			}
+
+
+			for(var i = 0; i < 1000; i++) {
+				charData[i] = 'poo';
+			}
+
+			ascii.innerHTML(''); 
+
+			printCharData(); 
+
+
+			// for(var i = 0; currentShadeData.length; i++) {
+			// 	charData[currentShadeData[i]] = 2;
+			// }
+
+
+
+
 			
 
 		}
