@@ -45,12 +45,29 @@ window.onload = function(){
 
 		//color vars 
 		var r, g, b, shade;
-		var character, wrappedChar, lastPixel = 0, lineCount = 0, pixelCount = 0, line = ""; 
+		var character, wrappedChar, wrappedLine, lastPixel = 0, lineCount = 0, pixelCount = 0, line = "";
+		var shadeData = [];  
+		var charData = []; 
 
 		function printChars() {
 
+			//intitalise charData array 
+			for(var i = 0; i < colourData.length; i = i+4) charData.push("."); 
 
+			//print charData array 
+			for(var i = 0; i < charData.length; i++) {
+				if(i !=0 && i%spriteWidth == 0) {
+						ascii.appendChild(document.createTextNode(line));
+						//newline
+						ascii.appendChild(document.createElement("br"));
+						//emptying line for the next row of pixels.
+						line = "";
+				} else {
+					line += charData[i];
+				}
+			}
 
+			//
 			for(var i = 0; i < colourData.length; i = i+4){
 				
 				//get colour data 
@@ -59,43 +76,20 @@ window.onload = function(){
 				b = colourData[i+2];
 				shade = r + g + b;
 
-
-
-				if(shade > 700) character = "."; //almost white
-				else if(shade > 200) character = ".";
-				// else if(shade > 39) character = ":";
-				// else if(shade > 38) character = "*";
-				else if(shade > 546) character = " .";
-				else if(shade > 10) character = ".";
-				else if(shade > 5) character = ".";
-				else character = "."; //almost black 
-
-				
-
-				
-				if(i != 0 && (i/4)%spriteWidth == 0) {
-					ascii.appendChild(document.createTextNode(line));
-					//newline
-					ascii.appendChild(document.createElement("br"));
-					//emptying line for the next row of pixels.
-					line = "";
-					lineCount++; 
-					console.log(lineCount);
+				//create shade data
+				if(shade > 700) {
+					character = "."; 
+					shadeData.push(0); 
+				} else if(shade > 200) {
+					character = "+"; 
+					shadeData.push(1); 
+				} else if(shade > 5) {
+					character = "@"; 
+					shadeData.push(2);
 				}
-
-
-				wrappedChar = '<span class="char">' + character + '</span>'; 
-
-				line += wrappedChar; 
-
-
-
-
-				pixelCount++;
 				
 			} 
-			lastPixel = i
-			console.log(pixelCount);
+			
 
 		}
 
@@ -108,7 +102,7 @@ window.onload = function(){
 	}
 
 	image.crossOrigin="anonymous";
-    image.src="http://i.imgur.com/EdxaL7x.gif";
+    image.src="http://i.imgur.com/rVoh5VA.gif";
 
      // $("#ascii").clone().appendTo("body");
 
