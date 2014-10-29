@@ -17,9 +17,8 @@ window.onload = function(){
 
 		$("#submitButton").click(function(){
 			console.log('clicked draw button')
-
+			ascii.innerHTML = ''; 
 			printChars(); 
-
 		});
 
 		var ascii = document.getElementById("ascii");
@@ -51,7 +50,14 @@ window.onload = function(){
 		var shadeData = [];  
 		var charData = []; 
 		var currentShadeData = []; 
+		var currentString = ''; 
+		var randChar = '';
+		shadeDataGot = true; 
 
+		//intitalise charData array 
+		for(var i = 0; i < colourData.length; i = i+4) charData.push("."); 
+
+		//print intitial data 
 		function printCharData() {
 			for(var i = 0; i < charData.length; i++) {
 				if(i !=0 && i%spriteWidth == 0) {
@@ -66,23 +72,13 @@ window.onload = function(){
 			}
 		}
 
-		function printChars() {
-
-			//intitalise charData array 
-			for(var i = 0; i < colourData.length; i = i+4) charData.push("."); 
-
-			//print charData array 
-			printCharData(); 
-
-			//intialise shadeData array 
+		function getShadeData() {
 			for(var i = 0; i < colourData.length; i = i+4){
-				
 				//get colour data 
 				r = colourData[i]; 
 				g = colourData[i+1];
 				b = colourData[i+2];
 				shade = r + g + b;
-
 				//create shade data
 				if(shade > 700) {
 					character = "."; 
@@ -94,44 +90,43 @@ window.onload = function(){
 					character = "@"; 
 					shadeData.push(2);
 				}
-				
 			} 
+		}
 
-			// var elementPos = shadeData.map(function(x) {return x; }).indexOf(2);
-			// var objectFound = shadeData[elementPos];
+		function printChars() {
+			//intialise shadeData array 
+			getShadeData(); 
 
-
-
-			for(var i = 0; i < shadeData.length; i++) {
-				if(shadeData[i] == 2) {
-					currentShadeData.push(i); 
+			//get all shade 2 values; 
+			if(shadeDataGot) {
+				for(var i = 0; i < shadeData.length; i++) {
+					if(shadeData[i] == 2) {
+						currentShadeData.push(i); 
+					}
 				}
+				shadeDataGot = false;
 			}
-
-
-			for(var i = 0; i < 1000; i++) {
-				charData[i] = 'poo';
-			}
-
-			ascii.innerHTML(''); 
-
-			printCharData(); 
-
-
-			// for(var i = 0; currentShadeData.length; i++) {
-			// 	charData[currentShadeData[i]] = 2;
-			// }
-
-
-
 
 			
 
-		}
+			currentString = 'XWHdhz';
 
-		
+			function getRandChar() {
+				var randNum; 
+				randNum = Math.floor(Math.random() * (currentString.length)); 
+				randChar = currentString[randNum]; 
+			}	
 
-		
+			//insert Characters 
+			for(var i = 0; i < 3000; i++) {
+				var randShadeIndex = Math.floor(Math.random() * currentShadeData.length);
+				getRandChar(); 
+				charData[currentShadeData[randShadeIndex]] = randChar;
+			}
+
+			//input second charData 
+			printCharData(); 
+		} 
 
 		sprite.parentNode.insertBefore(tempCanvasElement, sprite);
 

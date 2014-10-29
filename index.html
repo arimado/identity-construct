@@ -9,7 +9,8 @@
     		<input type="text" name="fname"><br>
     		
     	</form> 
-        <div id="submitButton">draw</div> 
+        <div id="submitButton" class="button">draw</div> 
+         <div id="reDrawButton" class="button">reDraw</div> 
         <pre id="ascii"></pre>
     	<img src="head_template_e.gif" id="sprite"> 
     	<!-- <canvas id="tempCanvas">
@@ -29,7 +30,7 @@
             margin: auto;
             line-height: .9em;
         }
-        #submitButton {
+        .button {
             padding: 10px 30px;
             border: 2px solid black;
             width: 300px;
@@ -41,14 +42,14 @@
             letter-spacing: 5px;
 
         }
-            #submitButton:hover {
+           .button:hover {
                 border: 2px solid red;
                 color: red;
                 cursor: pointer;
             }
 
         .char {
-            color: red;
+            color: red; 
         }
    </style> 
 </html>
