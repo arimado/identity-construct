@@ -3,54 +3,102 @@
     <head>
         <script src="jquery-2.1.1.min.js"></script> 
     </head>
+
     <body>
         
     	<form>
-    		<input type="text" name="fname"><br>
+    		<input id="inputBox" type="text" name="fname"><br>
     		
     	</form> 
         <div id="submitButton" class="button">draw</div> 
-         <div id="reDrawButton" class="button">reDraw</div> 
-        <pre id="ascii"></pre>
-    	<img src="head_template_e.gif" id="sprite"> 
+        <div id="wrapper" class="wrapper">
+            <pre id="stars" class="stars" > 
+            </pre> 
+            <div class="animWrap col">
+                <div id="AnimContainer"> 
+                    <pre id="ascii"></pre>
+                </div> 
+            </div> 
+        </div> 
+
+    	<img src="head_template_f.gif" id="sprite"> 
     	<!-- <canvas id="tempCanvas">
     	</canvas>  --> 
-        <div> just some rand text </div> 
     </body> 
-
+    
    <script src="script.js"></script> 
    
    <style>
-        #ascii {
-            letter-spacing: .3em;
+
+        body {
+            background: white; 
+        }
+
+        .wrapper {
+            position: relative;
+        }
+
+        .stars {
+            letter-spacing: .4em;
             font-size: .3em;
             font-family: courier;
             font-weight: bold;
-            width: 900px;   
-            margin: auto;
             line-height: .9em;
-        }
-        .button {
-            padding: 10px 30px;
-            border: 2px solid black;
-            width: 300px;
-            text-align: center;
-            margin: auto;
-            display: block;
-            text-transform: uppercase;
-            font-family: arial;
-            letter-spacing: 5px;
+            color: black; 
 
         }
-           .button:hover {
-                border: 2px solid red;
-                color: red;
-                cursor: pointer;
+                .animWrap {
+                   
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -10%);
+                }
+                #AnimContainer {
+                    overflow: hidden;
+                    display: inline-block;
+                }
+
+                    #ascii {
+                        letter-spacing: .4em;
+                        font-size: .3em;
+                        font-family: courier;
+                        font-weight: bold;
+                        line-height: .9em;
+                        color: black; 
+                    }
+
+                #inputBox {
+                    position: relative;
+                    z-index: 100;
+                }
+
+                .button {
+                    padding: 10px 30px;
+                    border: 2px solid black;
+                    width: 300px;
+                    text-align: center;
+                    margin: auto;
+                    display: block;
+                    text-transform: uppercase;
+                    font-family: arial;
+                    letter-spacing: 5px;
+                    position: relative;
+                    z-index: 100;
+                }
+                   .button:hover {
+                        border: 2px solid red;
+                        color: red;
+                        cursor: pointer;
+                    }
+
+            .char {
+                color: red; 
             }
 
-        .char {
-            color: red; 
-        }
+            #sprite {
+                display: none;
+            }
    </style> 
 </html>
 
