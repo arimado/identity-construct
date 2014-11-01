@@ -49,7 +49,8 @@ window.onload = function(){
 		//color vars 
 		var r, g, b, shade;
 		var character, wrappedChar, wrappedLine, lastPixel = 0, lineCount = 0, pixelCount = 0, line = "";
-		var shadeData = [];  
+		var shadeData = []; 
+		var totalColourData = [];  
 		var charData = []; 
 		var currentShadeData = []; 
 		var currentString = ''; 
@@ -72,35 +73,12 @@ window.onload = function(){
 		//animation vars
 		var animInitiated = false; 
 
+		//testColoutDataArray 
+		var colourLine = ""; 
+		var colourTestElement = document.getElementById("colourTest"); 
+
 		//intitalise charData array 
 		for(var i = 0; i < colourData.length; i = i+4) charData.push(" "); 
-
-		//initialise nullData array
-		for(var i = 0; i < colourData.length; i = i+4) nullData.push(" "); 
-
-		console.log('just spaces');
-		console.log(nullData);
-
-		
-		for(var i = 0; i < 500; i++) {
-			var randNullDataIndex = Math.floor(Math.random() * nullData.length)
-			nullData[randNullDataIndex] = '.'; 
-		} 
-		console.log(nullData.length);
-
-		function printStars() {
-			for(var i = 0; i < nullData.length; i++) {
-				if(i !=0 && i%spriteWidth == 0) {
-						stars.appendChild(document.createTextNode(starLine));
-						//newline
-						stars.appendChild(document.createElement("br"));
-						//emptying starline for the next row of pixels.
-						starLine = "";
-				} else {
-					starLine += nullData[i]; 
-				} 
-			}
-		} 
 
 		function getText() {
 			currentString = inputBox.val(); 
@@ -123,6 +101,20 @@ window.onload = function(){
 			console.log('chars printed');
 		}
 
+		function printTotalColourData() {
+			for(var i = 0; i < totalColourData.length; i++) {
+				if(i !=0 && i%spriteWidth == 0) {
+						colourTestElement.appendChild(document.createTextNode(colourLine));
+						//newline
+						colourTestElement.appendChild(document.createElement("br"));
+						//emptying line for the next row of pixels.
+						colourline = "";
+				} else {
+					colourLine += totalColourData[i];
+				} 
+			}
+		}
+
 		function getShadeData() {
 			for(var i = 0; i < colourData.length; i = i+4){
 				//get colour data 
@@ -131,6 +123,9 @@ window.onload = function(){
 				b = colourData[i+2];
 				shade = r + g + b;
 				//create shade data
+
+				totalColourData.push(shade); 
+
 				if(shade > 700) {
 					shadeData.push(0); 
 				} else if(shade > 200) {
@@ -138,7 +133,20 @@ window.onload = function(){
 				} else if(shade > 5) {
 					shadeData.push(2);
 				}
+
 			} 
+
+			console.log('colour data length: ' + colourData.length);
+
+			var colourArray = []; 
+
+			for(var i = 0; i < totalColourData.length; i++) {
+				if($.inArray(totalColourData[i], colourArray) == -1) {
+					colourArray.push(totalColourData[i]); 
+				} 
+			}
+
+			console.log(colourArray); 
 
 			if(shadeDataGot) {
 				for(var i = 0; i < shadeData.length; i++) {
@@ -153,9 +161,6 @@ window.onload = function(){
 						shadeDataNull.push(i);
 					} 
 				}
-
-				console.log(shadeDataHeavy); 
-				console.log(shadeDataMedium);
 
 				shadeDataGot = false;
 			}
@@ -205,7 +210,6 @@ window.onload = function(){
 			currentStringHeavy = []; 
 			currentStringMedium = []; 
 		} 
-
 		function printChars() {
 
 			//intialises: shadeData,shadeDataHeavy, shadeDataMedium 
@@ -217,14 +221,8 @@ window.onload = function(){
 			//insert characters into relevant arrays 
 			insertChars(); 
 
-			//printStars
-			//printStars(); 
-
 			//printChars 
 			printCharData(); 
-
-			//sprite.parentNode.insertBefore(tempCanvasElement, sprite);
-
 
 			var frames = 10, container, frame_width;
 
@@ -236,53 +234,45 @@ window.onload = function(){
 				container = document.getElementById("AnimContainer");
 				frame_width = parseInt(window.getComputedStyle(container).width)/frames;
 				container.style.width = frame_width+"px"; 
-				ascii.style.marginLeft = "0"; 
-
-				//star animation
-				// starFrames = 3;
-				// starContainer = document.getElementById("wrapper");
-				// starFrame_width = parseInt(window.getComputedStyle(starContainer).width)/frames;
-				// starContainer.style.width = starFrame_width+"px"; 
-				// stars.style.marginLeft = "0"; 
-
+				ascii.style.marginLeft = "0";  
 				animInitiated = true;
 			}
 
+			//print colour Data 
+			// printTotalColourData(); 
 
 
-			setInterval(loop, 1000/10); 
+			// setInterval(loop, 1000/10); 
 
-			function loop() {
+			// function loop() {
 
-
-				var currentMarginLeft = parseFloat(ascii.style.marginLeft); 
-				var currentStarMarginLeft = parseFloat(stars.style.marginLeft); 
+			// 	var currentMarginLeft = parseFloat(ascii.style.marginLeft); 
+			// 	var currentStarMarginLeft = parseFloat(stars.style.marginLeft); 
 				
-				if(currentMarginLeft == frame_width*(frames-1)*-1) {
-					ascii.style.marginLeft = "0"; 
-					//stars.style.marginLeft = "0"; 
-				} else {
-					ascii.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
-					//stars.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
-				}
-
-				// if(currentStarMarginLeft == starFrame_width*(starFrames-1)*-1) {
-				// 	stars.style.marginLeft = "0"; 
-				// } else {
-				// 	stars.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
-				// }
-
-
-			}
-
-
+			// 	if(currentMarginLeft == frame_width*(frames-1)*-1) {
+			// 		ascii.style.marginLeft = "0"; 
+			// 		//stars.style.marginLeft = "0"; 
+			// 	} else {
+			// 		ascii.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
+			// 		//stars.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
+			// 	}
+			// } 
 		} 
+
+		sprite.parentNode.insertBefore(tempCanvasElement, sprite);
+		
 	}
 
 	image.crossOrigin="anonymous";
-    image.src="http://i.imgur.com/xRwvsxT.gif";
+    image.src="http://i.imgur.com/v1wbj9D.gif";
 
-     // $("#ascii").clone().appendTo("body");
+    //more colours head_template_h
+    //http://i.imgur.com/v1wbj9D.gif
+    //
+
+    //original colours 
+    //http://i.imgur.com/doTCC1W.gif
+
 
 }
 
