@@ -2,15 +2,17 @@
 <html>
     <head>
         <script src="jquery-2.1.1.min.js"></script> 
+        <link rel="stylesheet" href="style.css"> 
     </head>
 
     <body>
         
-    	<form>
-    		<input id="inputBox" type="text" name="fname"><br>
-    		
-    	</form> 
-        <div id="submitButton" class="button">draw</div> 
+        <div class="statusBox">
+            <div class="statusTitle">Update Status</div> 
+    	    <input id="inputBox" type="text" name="fname" placeholder="Whats on your mind?"><br> 
+            <div id="submitButton" class="button">Post</div> 
+        </div> 
+
         <div id="wrapper" class="wrapper">
             <pre id="stars" class="stars" > 
             </pre> 
@@ -24,85 +26,13 @@
 
         </div> 
 
-    	<img src="head_template_j.gif" id="sprite"> 
+    	<img src="head_template_h.gif" id="sprite"> 
     	<canvas id="tempCanvas">
     	</canvas>  
     </body> 
     
    <script src="script.js"></script> 
    
-   <style>
-
-        body {
-            background: white; 
-        }
-
-        .wrapper {
-            position: relative;
-        }
-
-        .stars {
-            letter-spacing: .4em;
-            font-size: .3em;
-            font-family: courier;
-            font-weight: bold;
-            line-height: .9em;
-            color: black; 
-
-        }
-                .animWrap {
-                   
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -10%);
-                }
-                #AnimContainer {
-                    /*overflow: hidden;*/
-                    display: inline-block;
-                }
-
-                    #ascii {
-                        letter-spacing: .4em;
-                        font-size: .3em;
-                        font-family: courier;
-                        font-weight: bold;
-                        line-height: .9em;
-                        color: black; 
-                    }
-
-                #inputBox {
-                    position: relative;
-                    z-index: 100;
-                }
-
-                .button {
-                    padding: 10px 30px;
-                    border: 2px solid black;
-                    width: 300px;
-                    text-align: center;
-                    margin: auto;
-                    display: block;
-                    text-transform: uppercase;
-                    font-family: arial;
-                    letter-spacing: 5px;
-                    position: relative;
-                    z-index: 100;
-                }
-                   .button:hover {
-                        border: 2px solid red;
-                        color: red;
-                        cursor: pointer;
-                    }
-
-            .char {
-                color: red; 
-            }
-
-            #sprite {
-                display: none;
-            }
-   </style> 
 </html>
 
 
