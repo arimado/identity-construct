@@ -10,7 +10,7 @@ window.onload = function(){
 			getText();
 			printChars(); 
 			statusCount++; 
-		});
+		}); 
 
 		var statusCount = 0; 
 
@@ -68,10 +68,9 @@ window.onload = function(){
 
 		var currentStringHeavy = [], currentStringMedium = []; 
 
-
 		var heavyString = 'abcdeghkmnopqrswxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#%@&';
 		var mediumString = 'fijlt=';
-		var lightString = "~!^*-+()'"; 
+		var lightString = "~!^*-+()'";
 
 		var heavyChars = [];
 		var mediumChars = []; 
@@ -157,9 +156,9 @@ window.onload = function(){
 
 			} 
 
-			console.log('shadeData length: ' + shadeData.length); 
+			// console.log('shadeData length: ' + shadeData.length); 
 
-			console.log('colour data length: ' + colourData.length);
+			// console.log('colour data length: ' + colourData.length);
 
 			var colourArray = []; 
 
@@ -169,7 +168,7 @@ window.onload = function(){
 				} 
 			}
 
-			console.log(colourArray); 
+			// console.log(colourArray); 
 
 			if(shadeDataGot) {
 				for(var i = 0; i < shadeData.length; i++) {
@@ -331,12 +330,13 @@ window.onload = function(){
 
     //more colours head_template_h
     //http://i.imgur.com/v1wbj9D.gif
-    //
+    //current
 
     //original colours 
     //http://i.imgur.com/doTCC1W.gif
 
-
+    //new head
+    //http://i.imgur.com/tVuGGup.gif
 }
 
 
