@@ -1,9 +1,7 @@
 
 window.onload = function(){
 	var image = new Image();
-
 	image.onload = function() {
-
 		$("#submitButton").click(function(){
 			console.log('clicked draw button')
 			ascii.innerHTML = ''; 
@@ -63,6 +61,10 @@ window.onload = function(){
 		var shadeData_3 = []; 
 		var shadeData_4 = []; 
 		var shadeData_5 = [];  
+		var shadeData_6 = []; 
+		var shadeData_7 = []; 
+		var shadeData_8 = []; 
+		var shadeData_9 = [];
 
 		var currentStringHeavy, currentStringMedium; 
 
@@ -122,6 +124,11 @@ window.onload = function(){
 		}
 
 		function getShadeData() {
+			
+			// console.log('shadeData length: ' + shadeData.length); 
+
+			// console.log('colour data length: ' + colourData.length);
+
 			for(var i = 0; i < colourData.length; i = i+4){
 				//get colour data 
 				r = colourData[i]; 
@@ -132,48 +139,61 @@ window.onload = function(){
 
 				totalColourData.push(shade); 
 
-				// if(shade > 700) {
-				// 	shadeData.push(0); 
-				// } else if(shade > 200) {
-				// 	shadeData.push(1); 
-				// } else if(shade > 5) {
-				// 	shadeData.push(2);
-				// }
-
-				if(shade == 765) {
-					shadeData.push(0); 
-				} else if(shade == 612) {
-					shadeData.push(1);
-				} else if(shade == 459) {
-					shadeData.push(2);
-				} else if(shade == 306) {
-					shadeData.push(3);
-				} else if(shade == 153) {
-					shadeData.push(4);
-				} else if(shade == 0) {
-					shadeData.push(5);
-				} 
-
 			} 
-
-			// console.log('shadeData length: ' + shadeData.length); 
-
-			// console.log('colour data length: ' + colourData.length);
 
 			var colourArray = []; 
 
 			for(var i = 0; i < totalColourData.length; i++) {
+				
 				if($.inArray(totalColourData[i], colourArray) == -1) {
 					colourArray.push(totalColourData[i]); 
-				} 
-			}
+				}
 
-			// console.log(colourArray); 
+				if(totalColourData[i] == colourArray[0]) {
+					shadeData.push(0); 
+				} else if (totalColourData[i] == colourArray[1]) {
+					shadeData.push(1); 
+				} else if (totalColourData[i] == colourArray[2]) {
+					shadeData.push(2); 
+				} else if (totalColourData[i] == colourArray[3]) {
+					shadeData.push(3); 
+				} else if (totalColourData[i] == colourArray[4]) {
+					shadeData.push(4); 
+				} else if (totalColourData[i] == colourArray[5]) {
+					shadeData.push(5); 
+				} else if (totalColourData[i] == colourArray[6]) {
+					shadeData.push(6); 
+				} else if (totalColourData[i] == colourArray[7]) {
+					shadeData.push(7); 
+				} else if (totalColourData[i] == colourArray[8]) {
+					shadeData.push(8); 
+				} else if (totalColourData[i] == colourArray[9]) {
+					shadeData.push(9); 
+				}
+
+			} 
+			console.log(colourArray); 
 
 			if(shadeDataGot) {
 				for(var i = 0; i < shadeData.length; i++) {
 					// put these things into arrays that clear themeselves 
 					
+
+					if(shadeData[i] == 9) {
+						shadeData_9.push(i)
+					}
+
+					if(shadeData[i] == 8) {
+						shadeData_8.push(i)
+					}
+
+					if(shadeData[i] == 7) {
+						shadeData_7.push(i)
+					}
+
+					if(shadeData[i] == 6) {
+						shadeData_6.push(i)
+					}
 
 					if(shadeData[i] == 5) {
 						shadeData_5.push(i)
@@ -231,31 +251,46 @@ window.onload = function(){
 		function insertChars() {
 			for(var i = 0; i < 500; i++) {
 
-				if(currentStringHeavy.length > 0) {
-					var randHeavyIndex = Math.floor(Math.random() * currentStringHeavy.length); 
-					var randHeavyShadeIndex = Math.floor(Math.random() * shadeData_5.length); 
-					charData[shadeData_5[randHeavyShadeIndex]] = currentStringHeavy[randHeavyIndex].toUpperCase();
-				}
-				if(currentStringMedium.length > 0) {
-					var randMediumIndex = Math.floor(Math.random() * currentStringMedium.length); 
-					var randMediumShadeIndex = Math.floor(Math.random() * shadeData_1.length); 
-					charData[shadeData_1[randMediumShadeIndex]] = currentStringMedium[randMediumIndex].toLowerCase();;
-				} 
+				// if(currentStringHeavy.length > 0) {
+				// 	var randHeavyIndex = Math.floor(Math.random() * currentStringHeavy.length); 
+				// 	var randHeavyShadeIndex = Math.floor(Math.random() * shadeData_5.length); 
+				// 	charData[shadeData_5[randHeavyShadeIndex]] = currentStringHeavy[randHeavyIndex].toUpperCase();
+				// }
+				// if(currentStringMedium.length > 0) {
+				// 	var randMediumIndex = Math.floor(Math.random() * currentStringMedium.length); 
+				// 	var randMediumShadeIndex = Math.floor(Math.random() * shadeData_1.length); 
+				// 	charData[shadeData_1[randMediumShadeIndex]] = currentStringMedium[randMediumIndex].toLowerCase();;
+				// } 
 
-				// var randShadeIndex_3 = Math.floor(Math.random() * shadeData_3.length); 
-				// charData[shadeData_3[randShadeIndex_3]] = 'X';
+				var randShadeIndex_1 = Math.floor(Math.random() * shadeData_1.length); 
+				charData[shadeData_1[randShadeIndex_2]] = '+';
 
-				// var randShadeIndex_4 = Math.floor(Math.random() * shadeData_4.length); 
-				// charData[shadeData_4[randShadeIndex_4]] = '#';
+				var randShadeIndex_2 = Math.floor(Math.random() * shadeData_2.length); 
+				charData[shadeData_2[randShadeIndex_2]] = '+';
 
-				// var randShadeIndex_2 = Math.floor(Math.random() * shadeData_2.length); 
-				// charData[shadeData_2[randShadeIndex_2]] = '@';
+				var randShadeIndex_3 = Math.floor(Math.random() * shadeData_3.length); 
+				charData[shadeData_3[randShadeIndex_3]] = '+';
 
-				// var randMediumShadeIndex = Math.floor(Math.random() * shadeDataMedium.length); 
-				// charData[shadeDataMedium[randMediumShadeIndex]] = 'W';
+				var randShadeIndex_4 = Math.floor(Math.random() * shadeData_4.length); 
+				charData[shadeData_4[randShadeIndex_4]] = '*';
 
+				var randShadeIndex_5 = Math.floor(Math.random() * shadeData_5.length); 
+				charData[shadeData_5[randShadeIndex_5]] = '%';
 
+				var randShadeIndex_6 = Math.floor(Math.random() * shadeData_6.length); 
+				charData[shadeData_6[randShadeIndex_6]] = 'X';
 
+				var randShadeIndex_7 = Math.floor(Math.random() * shadeData_7.length); 
+				charData[shadeData_7[randShadeIndex_7]] = '#';
+
+				var randShadeIndex_8 = Math.floor(Math.random() * shadeData_8.length); 
+				charData[shadeData_8[randShadeIndex_8]] = '#';
+
+				var randShadeIndex_9 = Math.floor(Math.random() * shadeData_9.length); 
+				charData[shadeData_9[randShadeIndex_9]] = '#';
+				
+				var randMediumShadeIndex = Math.floor(Math.random() * shadeDataMedium.length); 
+				charData[shadeDataMedium[randMediumShadeIndex]] = 'W';
 
 			}
 			currentStringHeavy = []; 
@@ -273,7 +308,9 @@ window.onload = function(){
 		function printChars() {
 
 			//intialises: shadeData,shadeDataHeavy, shadeDataMedium 
-			getShadeData(); 
+			if(shadeDataGot) {
+				getShadeData(); 
+			} 
 
 			//filter charac
 			filterChars(); 
@@ -319,14 +356,16 @@ window.onload = function(){
 					//stars.style.marginLeft = (currentMarginLeft - frame_width) + "px"; 
 				}
 			} 
+
+
 		} 
 
 		sprite.parentNode.insertBefore(tempCanvasElement, sprite);
-
 	}
-
 	image.crossOrigin="anonymous";
-    image.src="http://i.imgur.com/v1wbj9D.gif";
+    image.src="http://i.imgur.com/lbyJPOR.gif";
+
+  
 
     //more colours head_template_h
     //http://i.imgur.com/v1wbj9D.gif
@@ -337,7 +376,21 @@ window.onload = function(){
 
     //new head
     //http://i.imgur.com/tVuGGup.gif
+
+    //motion new head
+    //http://i.imgur.com/qAtpQ6n.gif
 }
+
+  var engine = new jWebAudio.SoundEngine();
+    var source = engine.addSoundSource({
+        'url': 'thatslife.mp3',
+        'preLoad': true,
+        'callback': function() {
+            source.sound.play();
+        }
+  });
+
+
 
 
 
